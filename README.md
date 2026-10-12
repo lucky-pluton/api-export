@@ -106,7 +106,50 @@ Open **[http://localhost:3000](http://localhost:3000)** in your browser (all `/a
 
 ---
 
-## 4. Automated Testing
+## 4. Deploying to Vercel
+
+The repository is configured for zero-friction Vercel deployment:
+- **Frontend**: Automatically built via `client/dist` static assets.
+- **Backend API**: Converted to serverless functions via [`api/index.js`](file:///c:/Users/Dell/Desktop/API%20project/api/index.js) and [`vercel.json`](file:///c:/Users/Dell/Desktop/API%20project/vercel.json).
+- **SQLite Database**: Automatically configured for ephemeral serverless storage (`/tmp/export_leads.db` with memory fallback).
+
+### Method 1: Deploy with Vercel CLI (From Terminal)
+
+1. Run the deployment command in PowerShell:
+```powershell
+npx vercel
+```
+2. Follow the prompt to log in via browser or device authentication.
+3. Accept the default project settings:
+   - **Link to existing project?** No
+   - **Project Name**: `api-export`
+   - **Directory**: `./`
+4. Deploy to production:
+```powershell
+npx vercel --prod
+```
+
+### Method 2: Deploy via GitHub (Recommended for Continuous Deployment)
+
+1. Push this local repo to your GitHub account:
+```powershell
+git remote add origin https://github.com/YOUR_USERNAME/api-export.git
+git branch -M main
+git push -u origin main
+```
+2. Go to **[vercel.com/new](https://vercel.com/new)**.
+3. Import your `api-export` repository.
+4. Under **Environment Variables**, add:
+   - `GOOGLE_PLACES_API_KEY`
+   - `HUNTER_API_KEY`
+   - `RESEND_API_KEY`
+   - `EMAIL_FROM`
+   - `TEST_EMAIL_TO`
+5. Click **Deploy**. Vercel will build the frontend and deploy the serverless API routes automatically!
+
+---
+
+## 5. Automated Testing
 
 The backend includes 23 automated tests running on Node's native test runner (`node:test` and `node:assert`):
 
