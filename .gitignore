@@ -14,8 +14,9 @@ build/
 *.env
 
 # SQLite local database and logs
-server/data/*.db
-server/data/*.db-journal
+server/data/
+server/data/*
+server/data/*.db*
 *.log
 npm-debug.log*
 yarn-debug.log*

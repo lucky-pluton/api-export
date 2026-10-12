@@ -4,10 +4,6 @@
   "description": "API Export — US Home Décor Buyer Discovery and Email Automation",
   "type": "module",
   "private": true,
-  "workspaces": [
-    "server",
-    "client"
-  ],
   "scripts": {
     "build": "npm --prefix client run build",
     "vercel-build": "npm --prefix client run build",
